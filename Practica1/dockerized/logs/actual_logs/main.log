@@ -1,0 +1,12 @@
+2023-02-10 17:07:23 Left:8.000 Right:3.000 Operator:+ Result:11.000
+2023-02-10 23:43:57 Left:8.000 Right:789.000 Operator:+ Result:797.000
+2023-02-11 01:38:42 Left:8.000 Right:3.000 Operator:+ Result:11.000
+2023-02-11 01:38:48 Left:1.000 Right:0 Operator:/ Result:Error => Division by 0
+2023-02-11 01:38:59 Left:4.000 Right:3.000 Operator:- Result:1.000
+2023-02-11 01:39:09 Left:8.000 Right:9.000 Operator:* Result:72.000
+2023-02-11 01:39:13 Left:1.000 Right:0.000 Operator:+ Result:1.000
+2023-02-11 01:39:17 Left: Right: Operator:+ Result:Error => Stack doesn't have sufficient elements
+2023-02-10 20:00:27 Left:2.000 Right:3.000 Operator:+ Result:5.000
+2023-02-11 02:27:02 Left:3.000 Right:3.000 Operator:+ Result:6.000
+2023-02-11 02:27:08 Left:7.000 Right:78.000 Operator:/ Result:0.090
+2023-02-11 02:27:12 Left:5.000 Right: Operator:+ Result:Error => Stack doesn't have sufficient elements

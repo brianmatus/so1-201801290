@@ -1,0 +1,33 @@
+version: '3.3'
+services:
+  mysql_docker:
+    image: 'mysql/mysql-server:latest'
+    environment:
+      '0': MYSQL_ROOT_PASSWORD=qwerty
+    ports:
+      - '3306:3306'
+    volumes:
+      - './dockerized/sql:/var/lib/mysql'
+    container_name: mysql_docker
+  backend:
+    image: 'matusb42/backend_practica1_201801290:latest'
+    build: ./back/
+    ports:
+      - '5000:5000'
+    container_name: backend
+    volumes:
+      - './dockerized/logs/actual_logs:/logs'
+  frontend:
+    image: 'matusb42/frontend_practica1_201801290:latest'
+    build: ./front/
+    ports:
+      - '3000:3000'
+    container_name: frontend
+  bash:
+    image: 'bash:5.2.15-alpine3.16'
+    volumes:
+      - './dockerized/logs/script:/log_script'
+      - './dockerized/logs/actual_logs:/log_file'
+    container_name: bashd
+    stdin_open: true
+    tty: true
