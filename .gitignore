@@ -1,0 +1,23 @@
+*.pdf
+node_modules/
+.DS_Store
+
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+.pnp
+.pnp.js
+
+
+# Practica 1
+Practica1/dockerized/sql
+Practica1/front/build
+Practica1/front/coverage
+
+
