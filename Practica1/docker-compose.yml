@@ -24,9 +24,9 @@ services:
       - '3000:3000'
     container_name: frontend
   bash:
-    image: 'bash:5.2.15-alpine3.16'
+    image: 'matusb42/script_practica1_201801290:latest'
+    build: ./script/
     volumes:
-      - './dockerized/logs/script:/log_script'
       - './dockerized/logs/actual_logs:/log_file'
     container_name: bashd
     stdin_open: true
