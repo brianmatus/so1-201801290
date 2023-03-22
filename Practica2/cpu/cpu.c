@@ -7,6 +7,7 @@
 
 #include <linux/sched.h>
 #include <linux/signal.h>
+#include <linux/cred.h>
 
 
 #define PROC_DIR "cpu_201801290"
@@ -33,7 +34,6 @@ unsigned long long end_stime;
 unsigned long long total_cpu_usage;
 
 
-
 //STRUCTS FOR LISTING PROCESSES
 struct task_struct * child;
 struct list_head * lstProcess;
@@ -46,7 +46,8 @@ static int so1cpu_info_show(struct seq_file *theFile, void *v) {
         seq_printf(theFile, "{\n");
         seq_printf(theFile, "\"pid\":%d,\n", task->pid);
         seq_printf(theFile, "\"name\":\"%s\",\n", task->comm);
-        seq_printf(theFile, "\"status\":%c,\n", task_state_to_char(task));
+        seq_printf(theFile, "\"status\":\"%c\",\n", task_state_to_char(task));
+        seq_printf(theFile, "\"user\":%i,\n", task->cred->uid.val);
         seq_printf(theFile, "\"children\":[");
         list_for_each(lstProcess, &(task->children)){
             child = list_entry(lstProcess, struct task_struct, sibling);
@@ -58,28 +59,27 @@ static int so1cpu_info_show(struct seq_file *theFile, void *v) {
         }
         seq_printf(theFile, "{\"pid\":-1, \"name\":\"-\"}]\n},\n");
     }
-    seq_printf(theFile, "{\"pid\":-1, \"name\":\"-\", \"children\":[]}]\n");
+    seq_printf(theFile, "{\"pid\":-1, \"name\":\"-\", \"status\":\"X\", \"user\":-1, \"children\":[]}]\n");
 
 
     //////////////////////////////////////////////CPU USAGE/////////////////////////////////////////////////////////////
-//    before_total_cpu_usage = 0;
-//    for_each_process(task) {
-//        before_total_cpu_usage += task->utime + task->stime;
-//    }
-//    usleep_range(interval_us, interval_us + 1000);
-//
-//    after_total_cpu_usage = 0;
-//    for_each_process(task) {
-//        after_total_cpu_usage += task->utime + task->stime;
-//    }
-//
-//
-//    total_cpu_usage = (after_total_cpu_usage-before_total_cpu_usage) / interval_us;
-//    printk(KERN_INFO "Current total_cpu_usage: %llu\n", total_cpu_usage);
-//
-//
-//    seq_printf(theFile, ",\"cpu_usage\":%llu%%,\n", total_cpu_usage);
-//    seq_printf(theFile, "}");
+    before_total_cpu_usage = 0;
+    for_each_process(task) {
+        before_total_cpu_usage += task->utime + task->stime;
+    }
+    usleep_range(interval_us, interval_us + 1000);
+    after_total_cpu_usage = 0;
+    for_each_process(task) {
+        after_total_cpu_usage += task->utime + task->stime;
+    }
+
+
+    total_cpu_usage = (after_total_cpu_usage-before_total_cpu_usage) * 10 / interval_us;
+    printk(KERN_INFO "Current total_cpu_usage: %llu\n", total_cpu_usage);
+
+
+    seq_printf(theFile, ",\"cpu_usage\":%llu\n", total_cpu_usage);
+    seq_printf(theFile, "}");
 
     return 0;
 }

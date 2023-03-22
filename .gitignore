@@ -21,9 +21,11 @@ Practica1/front/build
 Practica1/front/coverage
 
 
-# Practica 1
+# Practica 2
 Practica2/cpu/compiled
 Practica2/ram/compiled
+Practica2/front/build
+Practica2/front/coverage
 cmake-build-debug
 Practica2/.idea
 
