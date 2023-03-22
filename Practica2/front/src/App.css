@@ -7,77 +7,14 @@ ol, ul {
   padding-left: 30px;
 }
 
-.board-row {
-  width: 320px;
-}
-
-.board-row:after {
-  clear: both;
-  content: "";
-  display: table;
-}
-
-.status {
-  font-family: 'Space Mono', serif;
-  background: black;
-  color: white;
-  font-size: 3em;
-  border:0;
-  padding: 0.3em;
-  text-align: right;
-  height: 60px;
-  width: 290px;
-
-}
-
-.square {
-  border: 2px solid #999;
-  float: left;
-  font-size: 34px;
-  font-weight: bold;
-  line-height: 80px;
-  height: 80px;
-  margin-right: -1px;
-  margin-top: -1px;
-  padding: 0;
-  text-align: center;
-  width: 80px;
-}
-
-.square.orange {
-  background: orange;
-}
-.square.simple {
-  background: #eee;
-}
-
-
-.square:focus {
-  outline: none;
-}
-
-.square:hover {
-  background: #fff;
-}
-
-.kbd-navigation .square:focus {
-  background: #ddd;
-}
-
-.processes {
-  /*display: flex;*/
-  flex-direction: row;
-}
-
 .processes-info {
   margin-left: 20px;
 }
 
 .processes-board {
-  margin: auto;
-  width: 17%;
-  /*border: 3px solid green;*/
+  margin-left: 30%;
   padding: 10px;
+  width: 60%;
 }
 
 .logcell td, .logcell th{
@@ -102,17 +39,5 @@ ol, ul {
   height: 200px;
   width: 300px;
   text-align: center;
-  display: inline-block;
-}
-
-.count_procs{
-  background: #5a5a5a;
-  border: 1px solid gray;
-  height: 220px;
-  width: 300px;
-  text-align: center;
-}
-
-.resume {
   display: inline-block;
 }

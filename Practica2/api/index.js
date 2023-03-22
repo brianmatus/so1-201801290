@@ -3,7 +3,7 @@ const Hapi = require('@hapi/hapi');
 
 
 // DATABASE
-let is_sql_local = true
+let is_sql_local = false
 let mainDB;
 const mysql = require('mysql');
 
