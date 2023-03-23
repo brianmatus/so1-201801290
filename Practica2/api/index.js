@@ -99,7 +99,7 @@ const init = async () => {
 
             let ram_usage = (stats[0].total_ram - stats[0].free_ram - stats[0].buffered_ram - stats[0].cached_ram)*100/stats[0].total_ram;
             ram_usage = ram_usage.toFixed(2);
-            let cp_usage = (stats[0].cpu_usage - 5307223)*5/248294 + 100
+            let cp_usage = (stats[0].cpu_usage - 80)/400 + 1.4
             cp_usage = Math.min(Math.max(cp_usage, 0), 100);
             cp_usage.toFixed(2);
 
