@@ -27,6 +27,7 @@ const InputText = ({inputDidChange} : any) => {
 
 
 
+
 class Game extends React.Component<any, any> {
 	constructor(props:any) {
 		super(props);
@@ -51,8 +52,8 @@ class Game extends React.Component<any, any> {
 
 	componentDidMount() {
 		//TODO uncomment
-		// setInterval( this.getData , 3000);
-		this.getData()
+		setInterval( this.getData , 3000);
+		// this.getData()
 	}
 
 	getData(){
@@ -110,7 +111,11 @@ class Game extends React.Component<any, any> {
 		}
 
 		return (
+
 			<div className="processes">
+
+				<h1 >Sistemas Operativos 1 - Práctica 2</h1>
+				<h4 >201801290 - Brian Matus </h4>
 				<div className="processes-board">
 					<div className="resume">
 						<div className="ram_data">
@@ -135,6 +140,8 @@ class Game extends React.Component<any, any> {
 				<div className="processes-info">
 					<h3>Buscador Hijos por PID:</h3>
 					<InputText inputDidChange={this.handleInputChange}></InputText>
+
+
 					<table>
 						<thead>
 							<tr className="logcell">

@@ -1,43 +1,84 @@
 body {
   font: 14px "Century Gothic", Futura, sans-serif;
   margin: 20px;
-}
-
-ol, ul {
-  padding-left: 30px;
+  background: #a1accc;
+  text-align: center;
 }
 
 .processes-info {
-  margin-left: 20px;
+  margin-left: 300px;
+  margin-right: 300px;
+
 }
 
 .processes-board {
-  margin-left: 30%;
-  padding: 10px;
-  width: 60%;
+  margin-left: 300px;
+  margin-right: 300px;
+  background: black;
 }
 
-.logcell td, .logcell th{
+.logcell td {
   border: 1px solid gray;
+    background-color: white;
+    color: #182b50;
 }
+
+
+table {
+
+  margin-right: 300px;
+  width: 100%;
+  border:1px solid;
+
+}
+
+thead {
+  width:100%;
+  background: #182b50;
+
+}
+
+.logcell th {
+    background-color: #182b50;
+    color: white;
+}
+
+
+tbody {
+  width:100%;
+}
+
+
 
 .cpu_data{
-  background: #5a5a5a;
-  border: 1px solid white;
-  font-weight: bold;
-  height: 280px;
-  width: 300px;
-  text-align: center;
   display: inline-block;
+  vertical-align: top;
 
+  background: #4867ab;
+  border: 3px solid #023991;
+  font-weight: bold;
+  height: 300px;
+//width: 300px;
+  width:50%;
+  text-align: center;
+  box-sizing: border-box;
 }
 
 .ram_data{
-  background: #5a5a5a;
-  border: 1px solid white;
-  font-weight: bold;
-  height: 200px;
-  width: 300px;
-  text-align: center;
   display: inline-block;
+  vertical-align: top;
+
+  background: #4867ab;
+  border: 3px solid #023991;
+  font-weight: bold;
+  height: 300px;
+  //width: 300px;
+  width:50%;
+  text-align: center;
+  box-sizing: border-box;
+
 }
+
+
+
+

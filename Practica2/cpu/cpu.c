@@ -23,7 +23,7 @@ unsigned long long after_total_cpu_usage = 0;
 unsigned long long total_cpu_usage = 0;
 
 ///////////////////////////////
-unsigned int interval_us = 1000000;
+unsigned int interval_us = 500000;
 unsigned long long start_time_ns, end_time_ns;
 
 unsigned long long start_utime;

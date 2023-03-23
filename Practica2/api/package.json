@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@hapi/hapi": "^20.1.2",
+    "hapi-cors": "^1.0.3",
     "mysql": "^2.18.1"
   },
   "keywords": [],
