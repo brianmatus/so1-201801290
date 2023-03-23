@@ -52,7 +52,7 @@ class Game extends React.Component<any, any> {
 
 	componentDidMount() {
 		//TODO uncomment
-		setInterval( this.getData , 3000);
+		setInterval( this.getData.bind(this) , 3000);
 		// this.getData()
 	}
 
@@ -98,7 +98,6 @@ class Game extends React.Component<any, any> {
 					}
 				}
 				else {
-					console.log("Process " + log.PID)
 					if (log.FatherPID === parseInt(this.state.userPIDQuery)) {
 						the_logs = the_logs.concat((
 							<LogCell key={log.ENTRY} pid={log.PID} name={log.Name} username={log.Username == -1 ? "--" : log.Username}

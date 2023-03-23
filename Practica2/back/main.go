@@ -11,6 +11,7 @@ import (
 	"os/exec"
 	"strconv"
 	"strings"
+	"time"
 
 	_ "github.com/GoogleCloudPlatform/cloudsql-proxy/proxy/proxy"
 )
@@ -51,17 +52,22 @@ type RAM struct {
 }
 
 func main() {
-	fmt.Println("#################################################################################################")
 	var err error = nil
 	mainDB, err = openDB()
+	defer mainDB.Close()
+
 	if err != nil {
 		fmt.Println("Error getting db:")
 		fmt.Println(err)
 		return
 	}
+
 	getUserNames()
-	updateData()
-	defer mainDB.Close()
+	for {
+		fmt.Println("#################################################################################################")
+		updateData()
+		time.Sleep(5 * time.Second)
+	}
 
 }
 
