@@ -3,9 +3,6 @@ package main
 import (
 	"context"
 	"encoding/json"
-	"github.com/joho/godotenv"
-	"log"
-
 	"github.com/go-redis/redis/v8"
 	"github.com/gofiber/fiber/v2"
 )
@@ -22,12 +19,6 @@ var redisClient = redis.NewClient(&redis.Options{
 })
 
 func main() {
-
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal(err)
-		return
-	}
 
 	app := fiber.New()
 
