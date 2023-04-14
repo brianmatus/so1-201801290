@@ -1,0 +1,15 @@
+syntax = "proto3";
+message VoteDetails {
+  int32 sede = 1;
+  int32 municipio = 2;
+  int32 departamento = 3;
+  int32 papeleta = 4;
+  int32 partido = 5;
+}
+service VoteService {
+  rpc AddNewVote (VoteDetails) returns (RegisterStatus) {}
+}
+message Empty {}
+message RegisterStatus {
+   int32 status = 1;
+}
