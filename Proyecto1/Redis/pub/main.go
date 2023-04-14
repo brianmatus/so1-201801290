@@ -11,12 +11,13 @@ import (
 	"github.com/joho/godotenv"
 	"log"
 	"os"
-	"reflect"
+	"strconv"
 )
 
 var (
-	REDIS_HOST string
-	REDIS_PORT string
+	REDIS_HOST         string
+	REDIS_PORT         string
+	REDIS_PUB_API_PORT string
 )
 
 var (
@@ -89,6 +90,7 @@ func main() {
 	MYSQL_DB = mustGentENV("MYSQL_DB")
 	MYSQL_USER = mustGentENV("MYSQL_USER")
 	MYSQL_PASS = mustGentENV("MYSQL_PASS")
+	REDIS_PUB_API_PORT = mustGentENV("REDIS_PUB_API_PORT")
 
 	fmt.Println(REDIS_HOST, REDIS_PORT)
 	var redisClient = redis.NewClient(&redis.Options{
@@ -114,7 +116,7 @@ func main() {
 	fmt.Println(parties)
 
 	app := fiber.New()
-	app.Post("/", func(c *fiber.Ctx) error {
+	app.Post("/new_vote", func(c *fiber.Ctx) error {
 		vote := new(Voting)
 
 		voteResponse := VotingResponse{}
@@ -122,6 +124,8 @@ func main() {
 		if err := c.BodyParser(vote); err != nil {
 			panic(err)
 		}
+
+		voteResponse.Sede = vote.Sede
 
 		///// Deparment
 		theKey, err := getKeyByDepartmentName(vote.Departamento)
@@ -157,8 +161,9 @@ func main() {
 			panic(err)
 		}
 
-		fmt.Println("Type of payload:", reflect.TypeOf(payload))
-		fmt.Println(string(payload))
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//if err := redisClient.Publish(ctx, "send-user-data", payload).Err(); err != nil {
 		//	panic(err)
 		//}
@@ -166,17 +171,27 @@ func main() {
 		//Save for listener
 		if err := redisClient.LPush(context.Background(), "newVotes", payload).Err(); err != nil {
 			fmt.Println("Error pushing newVote")
+			fmt.Println(err)
 			return c.SendStatus(404)
 		}
 
 		//Save for statistics
 		if err := redisClient.LPush(context.Background(), "lastFive", payload).Err(); err != nil {
 			fmt.Println("Error pushing lastFive")
+			fmt.Println(err)
 			return c.SendStatus(404)
 		}
 
 		if err := redisClient.LTrim(context.Background(), "lastFive", 0, 4).Err(); err != nil {
 			fmt.Println("Error Trimming lastFive")
+			fmt.Println(err)
+			return c.SendStatus(404)
+		}
+
+		//Most vote per place statistics
+		if err := redisClient.HIncrBy(ctx, "placeCounts", strconv.Itoa(voteResponse.Sede), 1).Err(); err != nil {
+			fmt.Println("Error updating place count")
+			fmt.Println(err)
 			return c.SendStatus(404)
 		}
 
@@ -184,7 +199,7 @@ func main() {
 		return c.SendStatus(200)
 	})
 
-	app.Listen(":3000")
+	app.Listen(":" + REDIS_PUB_API_PORT)
 }
 
 func getKeyByDepartmentName(name string) (int, error) {

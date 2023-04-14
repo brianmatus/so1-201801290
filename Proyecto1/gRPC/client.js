@@ -18,9 +18,10 @@ const options = {
 };
 let grpcObj = protoLoader.loadSync(PROTO_PATH, options);
 const VoteService = grpc.loadPackageDefinition(grpcObj).VoteService;
-
+const GRPC_SERVER_HOST = process.env.GRPC_SERVER_HOST;
+const GRPC_SERVER_PORT = process.env.GRPC_SERVER_PORT;
 const clientStub = new VoteService(
-    "localhost:50051",
+    GRPC_SERVER_HOST + ":" + GRPC_SERVER_PORT,
     grpc.credentials.createInsecure()
 );
 
@@ -37,6 +38,7 @@ const MYSQL_PORT = process.env.MYSQL_PORT;
 const MYSQL_DB = process.env.MYSQL_DB;
 const MYSQL_USER = process.env.MYSQL_USER;
 const MYSQL_PASS = process.env.MYSQL_PASS;
+
 
 const connection = mysql.createConnection({
     host: MYSQL_HOST,
@@ -73,28 +75,13 @@ function getVoteInfo() {
     })();
 }
 
-
-
-
-
-// clientStub.AddNewVote({
-//         sede: 3,
-//         municipio: 1,
-//         departamento: 2,
-//         papeleta: 1,
-//         partido: 6
-//     },
-//     (error, voteDetails) => {
-//         //implement your error logic here
-//         console.log(voteDetails);
-//     }
-// );
 //////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+const GPRC_CLIENT_API_PORT = process.env.GPRC_CLIENT_API_PORT;
 const init = async () => {
     const server = Hapi.server({
-        port: 3000,
+        port: GPRC_CLIENT_API_PORT,
         host: '0.0.0.0',
         routes: {
             cors: true
@@ -107,41 +94,31 @@ const init = async () => {
         handler: (request, h) => {
 
             const resPromise = new Promise((resolve, _) => {
-                console.log("Vote request received")
-                console.log(request.payload)
-
-                newVote = {}
-                newVote.sede = request.payload.sede
+                newVote = {};
+                newVote.sede = request.payload.sede;
 
                 key = getKeyByDepartment(request.payload.departamento)
                 if (key === -1) {
-                    console.log("No Department found")
                     resolve({ "status": 11});
                 }
-                newVote["departamento"] = key
+                newVote["departamento"] = key;
 
-                key = getKeyByMunicipality(request.payload.municipio, newVote["departamento"])
+                key = getKeyByMunicipality(request.payload.municipio, newVote["departamento"]);
                 if (key === -1) {
-                    console.log("No Municipality found")
                     resolve({ "status": 12});
                 }
-                newVote["municipio"] = key
-                key = getKeyByPaper(request.payload.papeleta)
+                newVote["municipio"] = key;
+                key = getKeyByPaper(request.payload.papeleta);
                 if (key === -1) {
-                    console.log("No Paper found")
                     resolve({ "status": 13});
                 }
-                newVote["papeleta"] = key
+                newVote["papeleta"] = key;
 
                 key = getKeyByParty(request.payload.partido)
                 if (key === -1) {
-                    console.log("No Party found")
                     resolve({ "status": 14});
                 }
-                newVote["partido"] = key
-
-                console.log("Formatted new vote:")
-                console.log(newVote)
+                newVote["partido"] = key;
 
                 clientStub.AddNewVote({
                         sede: newVote.sede,
@@ -153,6 +130,7 @@ const init = async () => {
                     (error, voteDetails) => {
                         //implement your error logic here
                         console.log(voteDetails);
+                        // console.log(error);
                     }
                 );
 
@@ -206,7 +184,7 @@ async function getDeparments() {
     return new Promise((resolve, reject) => {
         departments = {}
         connection.query('SELECT * FROM departments', (error, results, fields) => {
-            if (error) throw error;
+            if (error) console.log(error);
             results.forEach(row => {
                 departments[row.ID] = {id:row.ID, name:row.NAME}
             });
@@ -219,7 +197,7 @@ async function getMunicipalities() {
     return new Promise((resolve, reject) => {
         municipalities = {}
         connection.query('SELECT * FROM municipalities', (error, results, fields) => {
-            if (error) throw error;
+            if (error) console.log(error);
             results.forEach(row => {
                 municipalities[row.ID] = {id:row.ID, dpt_id:row.DPT, name:row.NAME}
             });
@@ -232,7 +210,7 @@ async function getPapers() {
     return new Promise((resolve, reject) => {
         papers = {}
         connection.query('SELECT * FROM papers', (error, results, fields) => {
-            if (error) throw error;
+            if (error) console.log(error);
             results.forEach(row => {
                 papers[row.ID] = {id:row.ID, name:row.NAME}
             });
@@ -245,7 +223,7 @@ async function getParties() {
     return new Promise((resolve, reject) => {
         parties = {}
         connection.query('SELECT * FROM parties', (error, results, fields) => {
-            if (error) throw error;
+            if (error) console.log(error);
             results.forEach(row => {
                 parties[row.ID] = {id:row.ID, name:row.NAME}
             });
