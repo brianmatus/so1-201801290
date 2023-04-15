@@ -1,0 +1,11 @@
+{
+  "name": "gRPC",
+  "version": "1.0.0",
+  "dependencies": {
+    "@grpc/grpc-js": "^1.8.14",
+    "@grpc/proto-loader": "^0.7.6",
+    "@hapi/hapi": "^21.3.1",
+    "dotenv": "^16.0.3",
+    "mysql": "^2.18.1"
+  }
+}

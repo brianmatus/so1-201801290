@@ -100,23 +100,27 @@ const init = async () => {
                 key = getKeyByDepartment(request.payload.departamento)
                 if (key === -1) {
                     resolve({ "status": 11});
+                    return
                 }
                 newVote["departamento"] = key;
 
                 key = getKeyByMunicipality(request.payload.municipio, newVote["departamento"]);
                 if (key === -1) {
                     resolve({ "status": 12});
+                    return
                 }
                 newVote["municipio"] = key;
                 key = getKeyByPaper(request.payload.papeleta);
                 if (key === -1) {
                     resolve({ "status": 13});
+                    return
                 }
                 newVote["papeleta"] = key;
 
                 key = getKeyByParty(request.payload.partido)
                 if (key === -1) {
                     resolve({ "status": 14});
+                    return
                 }
                 newVote["partido"] = key;
 
