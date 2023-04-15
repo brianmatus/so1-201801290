@@ -40,15 +40,14 @@ const MYSQL_USER = process.env.MYSQL_USER;
 const MYSQL_PASS = process.env.MYSQL_PASS;
 
 
-const connection = mysql.createConnection({
+let connection = mysql.createConnection({
     host: MYSQL_HOST,
     user: MYSQL_USER,
     password: MYSQL_PASS,
     database: MYSQL_DB
 });
 
-
-getVoteInfo()
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 
 function getVoteInfo() {
@@ -80,6 +79,9 @@ function getVoteInfo() {
 //////////////////////////////////////////////////////////////////////////////////
 const GPRC_CLIENT_API_PORT = process.env.GPRC_CLIENT_API_PORT;
 const init = async () => {
+    console.log("Waiting 10 segs for MySQL to start")
+    await delay(10000)
+    getVoteInfo()
     const server = Hapi.server({
         port: GPRC_CLIENT_API_PORT,
         host: '0.0.0.0',

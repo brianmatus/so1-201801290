@@ -14,7 +14,6 @@ COPY .env.local ./
 
 RUN go build -o /backend/
 
-EXPOSE 5000
 CMD ["/backend/pub"]
 
 

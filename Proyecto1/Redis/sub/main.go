@@ -41,6 +41,8 @@ var ctx = context.Background()
 var redisClient *redis.Client
 
 func main() {
+	fmt.Println("Waiting 10 segs for MySQL to Start")
+	time.Sleep(time.Second * 10)
 	err := godotenv.Load(".env.local")
 	if err != nil {
 		log.Fatal(err)
@@ -55,8 +57,8 @@ func main() {
 	MYSQL_USER = mustGentENV("MYSQL_USER")
 	MYSQL_PASS = mustGentENV("MYSQL_PASS")
 
-	fmt.Println("Redis-->" + REDIS_HOST + ":" + REDIS_PORT)
-	fmt.Println("MYSQL-->"+MYSQL_HOST, MYSQL_PORT, MYSQL_DB, MYSQL_USER, MYSQL_PASS)
+	//fmt.Println("Redis-->" + REDIS_HOST + ":" + REDIS_PORT)
+	//fmt.Println("MYSQL-->"+MYSQL_HOST, MYSQL_PORT, MYSQL_DB, MYSQL_USER, MYSQL_PASS)
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	redisClient = redis.NewClient(&redis.Options{
@@ -72,6 +74,8 @@ func main() {
 		log.Fatal("Error connecting to db", err)
 		return
 	}
+
+	fmt.Println("MySQL connection made")
 
 	for {
 		// use BLPOP to wait for a new element to be added to the "myList" key
@@ -100,7 +104,6 @@ func main() {
 		} else {
 			fmt.Println("Vote registered correctly")
 		}
-		time.Sleep(time.Second * 2) //TODO Deleteme, for testing
 	}
 }
 

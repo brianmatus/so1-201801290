@@ -12,6 +12,7 @@ import (
 	"log"
 	"os"
 	"strconv"
+	"time"
 )
 
 var (
@@ -76,7 +77,8 @@ var ctx = context.Background()
 var redisClient *redis.Client
 
 func main() {
-
+	fmt.Println("Waiting 10 segs for MySQL to Start")
+	time.Sleep(time.Second * 10)
 	err := godotenv.Load(".env.local")
 	if err != nil {
 		log.Fatal(err)
@@ -97,6 +99,8 @@ func main() {
 		Addr: REDIS_HOST + ":" + REDIS_PORT,
 	})
 
+	fmt.Println("Redis connection made")
+
 	mainDB, err = openDB()
 	defer mainDB.Close()
 
@@ -104,6 +108,8 @@ func main() {
 		log.Fatal("Error connecting to db", err)
 		return
 	}
+
+	fmt.Println("MySQL connection made")
 
 	getVoteInfo()
 	fmt.Println("Resulting deparments:")

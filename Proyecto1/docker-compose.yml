@@ -4,33 +4,69 @@ networks:
       config:
         - subnet: 172.25.0.0/16
 services:
-  mysql_docker:
+  mysql_d:
     image: 'mysql/mysql-server:latest'
     environment:
       '0': MYSQL_ROOT_PASSWORD=qwerty
     ports:
       - '3306:3306'
     volumes:
-      - './d-mysql/sql:/var/lib/mysql'
-    container_name: mysql_docker
+      - './d-mysql/:/var/lib/mysql'
+    container_name: mysql_d
     networks:
       my-network:
-        ipv4_address: 172.25.0.5
+        ipv4_address: 172.25.0.6
   redis:
     image: redis
+    ports:
+      - '6379:6379'
+    volumes:
+      - './d-redis/:/data'
+    container_name: redis
+    networks:
+      my-network:
+        ipv4_address: 172.25.0.7
   redissub:
     image: 'matusb42/so1_proyecto_redissub:latest'
     build: ./Redis/sub/
     container_name: redissub
+    depends_on:
+      - mysql_d
+      - redis
     networks:
       my-network:
-        ipv4_address: 172.25.0.3
+        ipv4_address: 172.25.0.5
   redispub:
     image: 'matusb42/so1_proyecto_redispub:latest'
     build: ./Redis/pub/
     ports:
       - '11000:11000'
     container_name: redispub
+    depends_on:
+      - mysql_d
+      - redis
     networks:
       my-network:
         ipv4_address: 172.25.0.4
+  grpc_server:
+    image: 'matusb42/so1_proyecto_grpc_server:latest'
+    build: ./gRPC/server/
+    ports:
+      - '50051:50051'
+    container_name: grpc_server
+    depends_on:
+      - mysql_d
+    networks:
+      my-network:
+        ipv4_address: 172.25.0.3
+  grpc_client:
+    image: 'matusb42/so1_proyecto_grpc_client:latest'
+    build: ./gRPC/client/
+    ports:
+      - '50061:50061'
+    container_name: grpc_client
+    depends_on:
+      - grpc_server
+    networks:
+      my-network:
+        ipv4_address: 172.25.0.2
