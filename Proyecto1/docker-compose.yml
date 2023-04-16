@@ -70,3 +70,15 @@ services:
     networks:
       my-network:
         ipv4_address: 172.25.0.2
+  front_api:
+    image: 'matusb42/so1_proyecto_front_api:latest'
+    build: ./API/
+    ports:
+      - '5000:5000'
+    container_name: front_api
+    depends_on:
+      - mysql_d
+      - grpc_server
+    networks:
+      my-network:
+        ipv4_address: 172.25.0.8

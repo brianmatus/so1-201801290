@@ -1,0 +1,66 @@
+#Redis
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-server-deployment
+spec:
+  selector:
+    matchLabels:
+      app: redis-server
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: redis-server
+    spec:
+      containers:
+        - name: redis
+          image: redis
+          ports:
+            - containerPort: 6379
+          volumeMounts:
+            - name: redis-server-data
+              mountPath: /data
+      volumes:
+        - name: redis-server-data
+          persistentVolumeClaim:
+            claimName: redis-pvc
+---
+#Redis PV
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: redis-server-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data/redis"
+---
+#Redis PVC
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: redis-server-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+#Redis Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-server-service
+spec:
+  selector:
+    app: redis-server
+  type: ClusterIP
+  ports:
+    - name: redis
+      port: 6379
+      targetPort: 6379

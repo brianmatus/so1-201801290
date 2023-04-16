@@ -37,7 +37,7 @@ const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 const FRONT_API_PORT = process.env.FRONT_API_PORT;
 const init = async options => {
     console.log("Waiting 10 segs for MySQL to start")
-    await delay(500)//10000)
+    await delay(10000)
     getVoteInfo()
     const server = Hapi.server({
         port: FRONT_API_PORT,

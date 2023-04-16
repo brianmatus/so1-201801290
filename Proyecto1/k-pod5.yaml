@@ -1,0 +1,35 @@
+#gRPC
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front-api-deployment
+spec:
+  selector:
+    matchLabels:
+      app: front-api
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: front-api
+    spec:
+      containers:
+        - name: gRPC-server
+          image: 'matusb42/so1_proyecto_front_api:latest'
+          ports:
+            - containerPort: 5000
+---
+#Front API Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: front-api-service
+spec:
+  selector:
+    app: front-api
+  type: NodePort
+  ports:
+    - name: front-api
+      port: 5000
+      targetPort: 5000
+      nodePort: 5000

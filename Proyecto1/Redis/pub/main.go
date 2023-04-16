@@ -112,14 +112,6 @@ func main() {
 	fmt.Println("MySQL connection made")
 
 	getVoteInfo()
-	fmt.Println("Resulting deparments:")
-	fmt.Println(departments)
-	fmt.Println("Resulting municipalities:")
-	fmt.Println(municipalities)
-	fmt.Println("Resulting papers:")
-	fmt.Println(papers)
-	fmt.Println("Resulting parties:")
-	fmt.Println(parties)
 
 	app := fiber.New()
 	app.Post("/new_vote", func(c *fiber.Ctx) error {
@@ -138,28 +130,24 @@ func main() {
 		if err != nil {
 			return c.SendStatus(404)
 		}
-		fmt.Println("Found Department key for", vote.Departamento, ":", theKey)
 		voteResponse.Departamento = theKey
 		///// Municipality
 		theKey, err = getKeyByMunicipalityName(vote.Municipio, theKey)
 		if err != nil {
 			return c.SendStatus(404)
 		}
-		fmt.Println("Found Municipality key for", vote.Municipio, ":", theKey)
 		voteResponse.Municipio = theKey
 		//Paper
 		theKey, err = getKeyByPaperName(vote.Papeleta)
 		if err != nil {
 			return c.SendStatus(404)
 		}
-		fmt.Println("Found Paper key for", vote.Papeleta, ":", theKey)
 		voteResponse.Papeleta = theKey
 		//Party
 		theKey, err = getKeyByPartyName(vote.Partido)
 		if err != nil {
 			return c.SendStatus(404)
 		}
-		fmt.Println("Found Party key for", vote.Partido, ":", theKey)
 		voteResponse.Partido = theKey
 
 		payload, err := json.Marshal(voteResponse)
