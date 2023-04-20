@@ -3,6 +3,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: redis-pub-sub-deployment
+  labels:
+    app: redis-pub-sub
+  namespace: so1
 spec:
   selector:
     matchLabels:
@@ -15,10 +18,28 @@ spec:
     spec:
       containers:
         - name: redis-pub
-          image: matusb42/so1_proyecto_redispub:latest
+          image: 'gcr.io/so1-proyecto-383722/redispub:latest'
           ports:
             - containerPort: 11000
         - name: redis-sub
-          image: matusb42/so1_proyecto_redissub:latest
+          image: 'gcr.io/so1-proyecto-383722/redissub:latest'
           
-# Redis Pub service will be declared in another .yaml to load-balance with gRPC
+
+---
+#Redis Pub Service (For Traffict Split)
+apiVersion: v1
+kind: Service
+metadata:
+  name: input-redis-service
+  labels:
+    app: input-service
+  namespace: so1
+
+spec:
+  selector:
+    app: redis-pub-sub
+  type: ClusterIP
+  ports:
+    - name: redis-pub-sub
+      port: 3000 #3000
+      targetPort: 11000

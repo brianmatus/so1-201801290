@@ -1,8 +1,42 @@
+#Redis PV
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: redis-server-pv
+  labels:
+    app: redis-server
+  namespace: so1
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data/redis"
+---
+#Redis PVC
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: redis-server-pvc
+  labels:
+    app: redis-server
+  namespace: so1
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
 #Redis
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: redis-server-deployment
+  labels:
+    app: redis-server
+  namespace: so1
 spec:
   selector:
     matchLabels:
@@ -24,38 +58,16 @@ spec:
       volumes:
         - name: redis-server-data
           persistentVolumeClaim:
-            claimName: redis-pvc
----
-#Redis PV
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: redis-server-pv
-spec:
-  capacity:
-    storage: 1Gi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: "/mnt/data/redis"
----
-#Redis PVC
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: redis-server-pvc
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
+            claimName: redis-server-pvc
 ---
 #Redis Service
 apiVersion: v1
 kind: Service
 metadata:
   name: redis-server-service
+  labels:
+    app: redis-server
+  namespace: so1
 spec:
   selector:
     app: redis-server

@@ -3,6 +3,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: front-api-deployment
+  labels:
+    app: front-api
+  namespace: so1
 spec:
   selector:
     matchLabels:
@@ -14,22 +17,24 @@ spec:
         app: front-api
     spec:
       containers:
-        - name: gRPC-server
-          image: 'matusb42/so1_proyecto_front_api:latest'
+        - name: front-api
+          image: 'gcr.io/so1-proyecto-383722/front_api:latest'
           ports:
             - containerPort: 5000
 ---
-#Front API Service
+#Front API Service with LoadBalancer
 apiVersion: v1
 kind: Service
 metadata:
   name: front-api-service
+  labels:
+    app: front-api
+  namespace: so1
 spec:
   selector:
     app: front-api
-  type: NodePort
+  type: LoadBalancer
   ports:
     - name: front-api
       port: 5000
       targetPort: 5000
-      nodePort: 5000

@@ -5,16 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="161516e1-b33a-4c87-b9db-1542da36611a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../gRPC/client/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../gRPC/server/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pub/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../pub/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pub/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../pub/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../../docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gRPC/client/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../gRPC/client/client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gRPC/server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../gRPC/server/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../k-input.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../k-input.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../k-pod1.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../k-pod1.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../k-pod2.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../k-pod2.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../k-pod3.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../k-pod3.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../k-pod4.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../k-pod4.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../k-pod5.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../k-pod5.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

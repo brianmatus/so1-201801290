@@ -2,24 +2,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: gRPC-deployment
+  name: grpc-deployment
+  labels:
+    app: grpc
+  namespace: so1
 spec:
   selector:
     matchLabels:
-      app: gRPC
+      app: grpc
   replicas: 1
   template:
     metadata:
       labels:
-        app: gRPC
+        app: grpc
     spec:
       containers:
-        - name: gRPC-server
-          image: 'matusb42/so1_proyecto_grpc_server:latest'
+        - name: grpc-server
+          image: 'gcr.io/so1-proyecto-383722/grpc_server:latest'
           ports:
             - containerPort: 50051
-        - name: gRPC-client
-          image: 'matusb42/so1_proyecto_grpc_client:latest'
+        - name: grpc-client
+          image: 'gcr.io/so1-proyecto-383722/grpc_client:latest'
           ports:
             - containerPort: 50061
 ---
@@ -27,13 +30,35 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: redis-server-service
+  name: grpc-service
+  labels:
+    app: grpc
+  namespace: so1
+
 spec:
   selector:
-    app: redis-server
+    app: grpc
   type: ClusterIP
   ports:
-    - name: redis
+    - name: grpc
       port: 50051
       targetPort: 50051
-# gRPC-client service will be declared in another .yaml to load-balance with Redis
+
+---
+#gRPC Client Service (For Traffict Split)
+apiVersion: v1
+kind: Service
+metadata:
+  name: input-grpc-service
+  labels:
+    app: input-service
+  namespace: so1
+
+spec:
+  selector:
+    app: grpc
+  type: ClusterIP
+  ports:
+    - name: grpc
+      port: 3000  #3000
+      targetPort: 50061

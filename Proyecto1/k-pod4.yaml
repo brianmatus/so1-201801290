@@ -1,8 +1,42 @@
+#MySQL PV
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mysql-pv
+  labels:
+    app: mysql
+  namespace: so1
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data/mysql"
+---
+#MySQL PVC
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pvc
+  labels:
+    app: mysql
+  namespace: so1
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
 #MySQL
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mysql-deployment
+  labels:
+    app: mysql
+  namespace: so1
 spec:
   selector:
     matchLabels:
@@ -29,36 +63,14 @@ spec:
           persistentVolumeClaim:
             claimName: mysql-pvc
 ---
-#MySQL PV
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: mysql-pv
-spec:
-  capacity:
-    storage: 1Gi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: "/mnt/data/mysql"
----
-#MySQL PVC
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: mysql-pvc
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
----
 #MySQL Service
 apiVersion: v1
 kind: Service
 metadata:
   name: mysql-service
+  labels:
+    app: mysql
+  namespace: so1
 spec:
   selector:
     app: mysql
