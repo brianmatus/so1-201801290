@@ -2,44 +2,82 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: redis-pub-sub-deployment
+  name: target-redis
   labels:
-    app: redis-pub-sub
+    app: target
   namespace: so1
 spec:
   selector:
     matchLabels:
-      app: redis-pub-sub
+      app: target
   replicas: 1
   template:
     metadata:
       labels:
-        app: redis-pub-sub
+        app: target
     spec:
       containers:
         - name: redis-pub
           image: 'gcr.io/so1-proyecto-383722/redispub:latest'
           ports:
-            - containerPort: 11000
+            - containerPort: 80
         - name: redis-sub
           image: 'gcr.io/so1-proyecto-383722/redissub:latest'
-          
+       
 
 ---
 #Redis Pub Service (For Traffict Split)
 apiVersion: v1
 kind: Service
 metadata:
-  name: input-redis-service
-  labels:
-    app: input-service
+  name: target-redis-service
   namespace: so1
-
 spec:
-  selector:
-    app: redis-pub-sub
-  type: ClusterIP
   ports:
     - name: redis-pub-sub
-      port: 3000 #3000
-      targetPort: 11000
+      port: 80  #3000
+      targetPort: 80
+  selector:
+    app: target
+    version: "2.0"
+  # type: ClusterIP
+
+
+# ---
+# #gRPC Client Service (For Traffict Split)
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: input-redis-service
+#   labels:
+#     app: input-service
+#   namespace: so1
+
+# spec:
+#   selector:
+#     app: redis-pub-sub
+#   type: ClusterIP
+#   ports:
+#     - name: redis-pub-sub
+#       port: 3000  #3000
+#       targetPort: 11000
+
+
+# ---
+# #Redis Pub Service (For Traffict Split)
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: input-redis-service
+#   labels:
+#     app: input-service
+#   namespace: so1
+
+# spec:
+#   selector:
+#     app: redis-pub-sub
+#   type: ClusterIP
+#   ports:
+#     - name: redis-pub-sub
+#       port: 3000 #3000
+#       targetPort: 11000

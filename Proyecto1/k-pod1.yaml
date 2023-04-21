@@ -2,29 +2,45 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: grpc-deployment
-  labels:
-    app: grpc
+  name: target-grpc
   namespace: so1
 spec:
   selector:
     matchLabels:
-      app: grpc
+      app: target
+      version: "1.0"
   replicas: 1
   template:
     metadata:
       labels:
-        app: grpc
+        app: target
+        version: "1.0"
     spec:
       containers:
         - name: grpc-server
           image: 'gcr.io/so1-proyecto-383722/grpc_server:latest'
           ports:
-            - containerPort: 50051
+            - containerPort: 80
         - name: grpc-client
           image: 'gcr.io/so1-proyecto-383722/grpc_client:latest'
           ports:
             - containerPort: 50061
+---
+#gRPC Client Service (For Traffict Split)
+apiVersion: v1
+kind: Service
+metadata:
+  name: target-grpc-service
+  namespace: so1
+spec:
+  ports:
+    - name: grpc-client
+      port: 80  #3000
+      targetPort: 80
+  selector:
+    app: target
+    version: "1.0"
+  # type: ClusterIP
 ---
 #gRPC Server Service
 apiVersion: v1
@@ -32,33 +48,63 @@ kind: Service
 metadata:
   name: grpc-service
   labels:
-    app: grpc
+    app: target
   namespace: so1
-
 spec:
   selector:
-    app: grpc
+    app: target
   type: ClusterIP
   ports:
-    - name: grpc
+    - name: grpc-server
       port: 50051
       targetPort: 50051
 
----
-#gRPC Client Service (For Traffict Split)
-apiVersion: v1
-kind: Service
-metadata:
-  name: input-grpc-service
-  labels:
-    app: input-service
-  namespace: so1
 
-spec:
-  selector:
-    app: grpc
-  type: ClusterIP
-  ports:
-    - name: grpc
-      port: 3000  #3000
-      targetPort: 50061
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ---
+# #gRPC Client Service (For Traffict Split)
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: input-grpc-service
+#   labels:
+#     app: input-service
+#   namespace: so1
+
+# spec:
+#   selector:
+#     app: grpc
+#   type: ClusterIP
+#   ports:
+#     - name: grpc
+#       port: 3000  #3000
+#       targetPort: 50061
+# ---
+# #Front API Service with LoadBalancer
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: input-grpc-service
+#   labels:
+#     app: input-service
+#   namespace: so1
+# spec:
+#   selector:
+#     app: grpc
+#   type: LoadBalancer
+#   ports:
+#     - name: grpc-backend
+#       port: 3000
+#       targetPort: 50061
