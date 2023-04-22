@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: target-grpc
+  name: target-v1-0
   namespace: so1
 spec:
   selector:
@@ -17,7 +17,7 @@ spec:
         version: "1.0"
     spec:
       containers:
-        - name: grpc-server
+        - name: target-v1-0
           image: 'gcr.io/so1-proyecto-383722/grpc_server:latest'
           ports:
             - containerPort: 80
@@ -30,7 +30,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: target-grpc-service
+  name: target-v1-0
   namespace: so1
 spec:
   ports:
@@ -41,6 +41,8 @@ spec:
     app: target
     version: "1.0"
   # type: ClusterIP
+
+  
 ---
 #gRPC Server Service
 apiVersion: v1

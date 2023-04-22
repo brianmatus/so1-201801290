@@ -2,22 +2,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: target-redis
-  labels:
-    app: target
+  name: target-v2-0
   namespace: so1
 spec:
   selector:
     matchLabels:
       app: target
+      version: "2.0"
   replicas: 1
   template:
     metadata:
       labels:
         app: target
+        version: "2.0"
     spec:
       containers:
-        - name: redis-pub
+        - name: target-v2-0
           image: 'gcr.io/so1-proyecto-383722/redispub:latest'
           ports:
             - containerPort: 80
@@ -30,7 +30,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: target-redis-service
+  name: target-v2-0
   namespace: so1
 spec:
   ports:
