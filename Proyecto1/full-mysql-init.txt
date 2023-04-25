@@ -1,0 +1,166 @@
+create database so1;
+use so1;
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '';
+ALTER USER 'root'@'localhost' IDENTIFIED BY '';
+
+
+
+CREATE user 'so1'@'%' identified by '';
+ALTER USER 'so1'@'%' IDENTIFIED WITH mysql_native_password BY '';
+grant all privileges on so1.* to 'so1'@'%';
+flush privileges;
+
+
+-- MariaDB dump 10.19  Distrib 10.6.12-MariaDB, for debian-linux-gnu (x86_64)
+--
+-- Host: localhost    Database: so1
+-- ------------------------------------------------------
+-- Server version 10.6.12-MariaDB-0ubuntu0.22.10.1
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `departments`
+--
+
+DROP TABLE IF EXISTS `departments`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `departments` (
+  `ID` int(11) NOT NULL,
+  `NAME` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `departments`
+--
+
+LOCK TABLES `departments` WRITE;
+/*!40000 ALTER TABLE `departments` DISABLE KEYS */;
+INSERT INTO `departments` VALUES (1,'Alta Verapaz'),(2,'Baja Verapaz'),(3,'Chimaltenango'),(4,'Chiquimula'),(5,'El Progreso'),(6,'Escuintla'),(7,'Guatemala'),(8,'Huehuetenango'),(9,'Izabal'),(10,'Jalapa'),(11,'Jutiapa'),(12,'Petén'),(13,'Quetzaltenango'),(14,'Quiché'),(15,'Retalhuleu'),(16,'Sacatepéquez'),(17,'San Marcos'),(18,'Santa Rosa'),(19,'Sololá'),(20,'Suchitepéquez'),(21,'Totonicapán'),(22,'Zacapa');
+/*!40000 ALTER TABLE `departments` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `municipalities`
+--
+
+DROP TABLE IF EXISTS `municipalities`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `municipalities` (
+  `ID` int(11) NOT NULL,
+  `DPT` int(11) NOT NULL,
+  `NAME` varchar(45) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `municipalities`
+--
+
+LOCK TABLES `municipalities` WRITE;
+/*!40000 ALTER TABLE `municipalities` DISABLE KEYS */;
+INSERT INTO `municipalities` VALUES (1,1,'Cobán'),(2,1,'Santa Cruz Verapaz'),(3,1,'San Cristóbal Verapaz'),(4,1,'Tactic'),(5,1,'Tamahú'),(6,1,'San Miguel Tucurú'),(7,1,'Panzóz'),(8,1,'Senahú'),(9,1,'San Pedro Carchá'),(10,1,'San Juan Chamelco'),(11,1,'San Agustín Lanquín'),(12,1,'Santa María Cahabón'),(13,1,'Chisec'),(14,1,'Chahal'),(15,1,'Fray Bartolomé de las Casas'),(16,1,'Santa Catalina La Tinta'),(17,1,'Raxruhá'),(18,2,'Salamá'),(19,2,'San Miguel Chicaj'),(20,2,'Rabinal'),(21,2,'Cubulco'),(22,2,'Granados'),(23,2,'Santa Cruz el Chol'),(24,2,'San Jerónimo'),(25,2,'Purulhá'),(26,3,'Chimaltenango'),(27,3,'San José Poaquil'),(28,3,'San Martín Jilotepeque'),(29,3,'San Juan Comalapa'),(30,3,'Santa Apolonia'),(31,3,'Tecpán'),(32,3,'Patzún'),(33,3,'San Miguel Pochuta'),(34,3,'Patzicía'),(35,3,'Santa Cruz Balanyá'),(36,3,'Acatenango'),(37,3,'San Pedro Yepocapa'),(38,3,'San Andrés Itzapa'),(39,3,'Parramos'),(40,3,'Zaragoza'),(41,3,'El Tejar'),(42,4,'Chiquimula'),(43,4,'Jocotán'),(44,4,'Esquipulas'),(45,4,'Camotán'),(46,4,'Quezaltepeque'),(47,4,'Olopa'),(48,4,'Ipala'),(49,4,'San Juan Ermita'),(50,4,'Concepción Las Minas'),(51,4,'San Jacinto'),(52,4,'San José la Arada'),(53,5,'El Jícaro'),(54,5,'Morazán'),(55,5,'San Agustín Acasaguastlán'),(56,5,'San Antonio La Paz'),(57,5,'San Cristóbal Acasaguastlán'),(58,5,'Sanarate'),(59,5,'Guastatoya'),(60,5,'Sansare'),(61,6,'Escuintla'),(62,6,'Santa Lucía Cotzumalguapa'),(63,6,'La Democracia'),(64,6,'Siquinalá'),(65,6,'Masagua'),(66,6,'Tiquisate'),(67,6,'La Gomera'),(68,6,'Guaganazapa'),(69,6,'San José'),(70,6,'Iztapa'),(71,6,'Palín'),(72,6,'San Vicente Pacaya'),(73,6,'Nueva Concepción'),(74,7,'Santa Catarina Pinula'),(75,7,'San José Pinula'),(76,7,'Guatemala'),(77,7,'San José del Golfo'),(78,7,'Palencia'),(79,7,'Chinautla'),(80,7,'San Pedro Ayampuc'),(81,7,'Mixco'),(82,7,'San Pedro Sacatapéquez'),(83,7,'San Juan Sacatepéquez'),(84,7,'Chuarrancho'),(85,7,'San Raymundo'),(86,7,'Fraijanes'),(87,7,'Amatitlán'),(88,7,'Villa Nueva'),(89,7,'Villa Canales'),(90,7,'San Miguel Petapa'),(91,8,'Huehuetenango'),(92,8,'Chiantla'),(93,8,'Malacatancito'),(94,8,'Cuilco'),(95,8,'Nentón'),(96,8,'San Pedro Necta'),(97,8,'Jacaltenango'),(98,8,'Soloma'),(99,8,'Ixtahuacán'),(100,8,'Santa Bárbara'),(101,8,'La Libertad'),(102,8,'La Democracia'),(103,8,'San Miguel Acatán'),(104,8,'San Rafael La Independencia'),(105,8,'Todos Santos Cuchumatán'),(106,8,'San Juan Atitlán'),(107,8,'Santa Eulalia'),(108,8,'San Mateo Ixtatán'),(109,8,'Colotenango'),(110,8,'San Sebastián Huehuetenango'),(111,8,'Tectitán'),(112,8,'Concepción Huista'),(113,8,'San Juan Ixcoy'),(114,8,'San Antonio Huista'),(115,8,'Santa Cruz Barillas'),(116,8,'San Sebastián Coatán'),(117,8,'Aguacatán'),(118,8,'San Rafael Petzal'),(119,8,'San Gaspar Ixchil'),(120,8,'Santiago Chimaltenango'),(121,8,'Santa Ana Huista'),(122,9,'Morales'),(123,9,'Los Amates'),(124,9,'Livingston'),(125,9,'El Estor'),(126,9,'Puerto Barrios'),(127,10,'Jalapa'),(128,10,'San Pedro Pinula'),(129,10,'San Luis Jilotepeque'),(130,10,'San Manuel Chaparrón'),(131,10,'San Carlos Alzatate'),(132,10,'Monjas'),(133,10,'Mataquescuintla'),(134,11,'Jutiapa'),(135,11,'El Progreso'),(136,11,'Santa Catarina Mita'),(137,11,'Agua Blanca'),(138,11,'Asunción Mita'),(139,11,'Yupiltepeque'),(140,11,'Atescatempa'),(141,11,'Jerez'),(142,11,'El Adelanto'),(143,11,'Zapotitlán'),(144,11,'Comapa'),(145,11,'Jalpatagua'),(146,11,'Conguaco'),(147,11,'Moyuta'),(148,11,'Pasaco'),(149,11,'Quesada'),(150,12,'Flores'),(151,12,'San José'),(152,12,'San Benito'),(153,12,'San Andrés'),(154,12,'La Libertad'),(155,12,'San Francisco'),(156,12,'Santa Ana'),(157,12,'Dolores'),(158,12,'San Luis'),(159,12,'Sayaxché'),(160,12,'Melchor de Mencos'),(161,12,'Poptún'),(162,13,'Quetzaltenango'),(163,13,'Salcajá'),(164,13,'San Juan Olintepeque'),(165,13,'San Carlos Sija'),(166,13,'Sibilia'),(167,13,'Cabricán'),(168,13,'Cajolá'),(169,13,'San Miguel Siguilá'),(170,13,'San Juan Ostuncalco'),(171,13,'San Mateo'),(172,13,'Concepción Chiquirichapa'),(173,13,'San Martín Sacatepéquez'),(174,13,'Almolonga'),(175,13,'Cantel'),(176,13,'Huitán'),(177,13,'Zunil'),(178,13,'Colomba Costa Cuca'),(179,13,'San Francisco La Unión'),(180,13,'El Palmar'),(181,13,'Coatepeque'),(182,13,'Génova'),(183,13,'Flores Costa Cuca'),(184,13,'La Esperanza'),(185,13,'Palestina de Los Altos'),(186,14,'Santa Cruz del Quiché'),(187,14,'Chiché'),(188,14,'Chinique'),(189,14,'Zacualpa'),(190,14,'Chajul'),(191,14,'Santo Tomás Chichicastenango'),(192,14,'Patzité'),(193,14,'San Antonio Ilotenango'),(194,14,'San Pedro Jocopilas'),(195,14,'Cunén'),(196,14,'San Juan Cotzal'),(197,14,'Santa María Joyabaj'),(198,14,'Santa María Nebaj'),(199,14,'San Andrés Sajcabajá'),(200,14,'Uspantán'),(201,14,'Sacapulas'),(202,14,'San Bartolomé Jocotenango'),(203,14,'Canillá'),(204,14,'Chicamán'),(205,14,'Ixcán'),(206,14,'Pachalum'),(207,15,'Retalhuleu'),(208,15,'San Sebastián'),(209,15,'Santa Cruz Muluá'),(210,15,'San Martín Zapotitlán'),(211,15,'San Felipe'),(212,15,'San Andrés Villa Seca'),(213,15,'Champerico'),(214,15,'Nuevo San Carlos'),(215,15,'El Asintal'),(216,16,'Antigua Guatemala'),(217,16,'Jocotenango'),(218,16,'Pastores'),(219,16,'Sumpango'),(220,16,'Santo Domingo Xenacoj'),(221,16,'Santiago Sacatepéquez'),(222,16,'San Bartolomé Milpas Altas'),(223,16,'San Lucas Sacatepéquez'),(224,16,'Santa Lucía Milpas Altas'),(225,16,'Magdalena Milpas Altas'),(226,16,'Santa María de Jesús'),(227,16,'Ciudad Vieja'),(228,16,'San Miguel Dueñas'),(229,16,'San Juan Alotenango'),(230,16,'San Antonio Aguas Calientes'),(231,16,'Santa Catarina Barahona'),(232,17,'San Marcos'),(233,17,'Ayutla'),(234,17,'Catarina'),(235,17,'Comitancillo'),(236,17,'Concepción Tutuapa'),(237,17,'El Quetzal'),(238,17,'El Rodeo'),(239,17,'El Tumblador'),(240,17,'Ixchiguán'),(241,17,'La Reforma'),(242,17,'Malacatán'),(243,17,'Nuevo Progreso'),(244,17,'Ocós'),(245,17,'Pajapita'),(246,17,'Esquipulas Palo Gordo'),(247,17,'San Antonio Sacatepéquez'),(248,17,'San Cristóbal Cucho'),(249,17,'San José Ojetenam'),(250,17,'San Lorenzo'),(251,17,'San Miguel Ixtahuacán'),(252,17,'San Pablo'),(253,17,'San Pedro Sacatepéquez'),(254,17,'San Rafael Pie de la Cuesta'),(255,17,'Sibinal'),(256,17,'Sipacapa'),(257,17,'Tacaná'),(258,17,'Tajumulco'),(259,17,'Tejutla'),(260,17,'Río Blanco'),(261,17,'La Blanca'),(262,18,'Cuilapa'),(263,18,'Casillas Santa Rosa'),(264,18,'Chiquimulilla'),(265,18,'Guazacapán'),(266,18,'Nueva Santa Rosa'),(267,18,'Oratorio'),(268,18,'Pueblo Nuevo Viñas'),(269,18,'San Juan Tecuaco'),(270,18,'San Rafael Las Flores'),(271,18,'Santa Cruz Naranjo'),(272,18,'Santa María Ixhuatán'),(273,18,'Santa Rosa de Lima'),(274,18,'Taxisco'),(275,18,'Barberena'),(276,19,'Sololá'),(277,19,'Concepción'),(278,19,'Nahualá'),(279,19,'Panajachel'),(280,19,'San Andrés Semetabaj'),(281,19,'San Antonio Palopó'),(282,19,'San José Chacayá'),(283,19,'San Juan La Laguna'),(284,19,'San Lucas Tolimán'),(285,19,'San Marcos La Laguna'),(286,19,'San Pablo La Laguna'),(287,19,'San Pedro La Laguna'),(288,19,'Santa Catarina Ixtahuacán'),(289,19,'Santa Catarina Palopó'),(290,19,'Santa Clara La Laguna'),(291,19,'Santa Cruz La Laguna'),(292,19,'Santa Lucía Utatlán'),(293,19,'Santa María Visitación'),(294,19,'Santiago Atitlán'),(295,20,'Mazatenango'),(296,20,'Cuyotenango'),(297,20,'San Francisco Zapotitlán'),(298,20,'San Bernardino'),(299,20,'San José El Ídolo'),(300,20,'Santo Domingo Suchitépequez'),(301,20,'San Lorenzo'),(302,20,'Samayac'),(303,20,'San Pablo Jocopilas'),(304,20,'San Antonio Suchitépequez'),(305,20,'San Miguel Panán'),(306,20,'San Gabriel'),(307,20,'Chicacao'),(308,20,'Patulul'),(309,20,'Santa Bárbara'),(310,20,'San Juan Bautista'),(311,20,'Santo Tomás La Unión'),(312,20,'Zunilito'),(313,20,'Pueblo Nuevo'),(314,20,'Río Bravo'),(315,21,'Totonicapán'),(316,21,'San Cristóbal Totonicapán'),(317,21,'San Francisco El Alto'),(318,21,'San Andrés Xecul'),(319,21,'Momostenango'),(320,21,'Santa María Chiquimula'),(321,21,'Santa Lucía La Reforma'),(322,21,'San Bartolo'),(323,22,'Cabañas'),(324,22,'Estanzuela'),(325,22,'Gualán'),(326,22,'Huité'),(327,22,'La Unión'),(328,22,'Río Hondo'),(329,22,'San Jorge'),(330,22,'San Diego'),(331,22,'Teculután'),(332,22,'Usumatlán'),(333,22,'Zacapa');
+/*!40000 ALTER TABLE `municipalities` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `papers`
+--
+
+DROP TABLE IF EXISTS `papers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `papers` (
+  `ID` int(11) NOT NULL,
+  `NAME` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `papers`
+--
+
+LOCK TABLES `papers` WRITE;
+/*!40000 ALTER TABLE `papers` DISABLE KEYS */;
+INSERT INTO `papers` VALUES (1,'Blanca'),(2,'Verde'),(3,'Rosada');
+/*!40000 ALTER TABLE `papers` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `parties`
+--
+
+DROP TABLE IF EXISTS `parties`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `parties` (
+  `ID` int(11) NOT NULL,
+  `NAME` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `parties`
+--
+
+LOCK TABLES `parties` WRITE;
+/*!40000 ALTER TABLE `parties` DISABLE KEYS */;
+INSERT INTO `parties` VALUES (1,'UNE'),(2,'VAMOS'),(3,'FCN'),(4,'UNIONISTA'),(5,'VALOR');
+/*!40000 ALTER TABLE `parties` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `votes`
+--
+
+DROP TABLE IF EXISTS `votes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `votes` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `SEDE` int(11) NOT NULL,
+  `MUNICIPIO` int(11) NOT NULL,
+  `DEPARTAMENTO` int(11) NOT NULL,
+  `PAPELETA` int(11) NOT NULL,
+  `PARTIDO` int(11) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `votes`
+--
+
+LOCK TABLES `votes` WRITE;
+/*!40000 ALTER TABLE `votes` DISABLE KEYS */;
+INSERT INTO `votes` VALUES (7,0,3,1,1,3),(8,0,3,1,1,3),(9,3,3,1,1,3),(10,0,3,1,1,3),(13,0,76,7,2,1),(15,0,76,7,2,1),(16,0,76,7,2,1),(17,3,76,7,2,1);
+/*!40000 ALTER TABLE `votes` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-04-15  1:39:22

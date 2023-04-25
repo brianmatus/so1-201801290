@@ -1,0 +1,10 @@
+DELETE FROM municipalities
+WHERE ID NOT IN (
+  SELECT ID
+  FROM (
+    SELECT ID,
+      ROW_NUMBER() OVER (PARTITION BY DPT ORDER BY ID) AS row_num
+    FROM municipalities
+  ) t
+  WHERE row_num <= 5
+);
