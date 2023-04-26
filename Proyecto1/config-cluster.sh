@@ -18,6 +18,7 @@ kubectl apply -f k-namespace.yaml
 kubectl apply -f k-pod3.yaml -f k-pod4.yaml
 
 
-read -s -k "Press any key when MySQL is configured..."
+echo "Press ENTER when MySQL is configured..."
+read -s 
 
 kubectl apply -f k-pod5.yaml -f k-pod1.yaml -f k-pod2.yaml -f k-target-svc.yaml -f k-gateway.yaml
