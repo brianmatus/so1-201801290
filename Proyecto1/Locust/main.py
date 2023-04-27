@@ -5,7 +5,7 @@ import json
 import mysql.connector
 
 
-API_HOST = "http://34.173.108.81:80"
+API_HOST = "http://34.27.184.24:80"
 
 DB_HOST = "127.0.0.1"
 DB_NAME = "so1"
