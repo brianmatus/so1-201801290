@@ -1,0 +1,10 @@
+FROM node:14-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm install --save-dev @popperjs/core
+RUN npm install
+COPY ./public ./public
+COPY ./src ./src
+ENV NODE_ENV development
+EXPOSE 3000
+CMD ["npm", "start"]
