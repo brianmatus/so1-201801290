@@ -12,12 +12,12 @@ DB_NAME = "so1"
 DB_USER = "so1"
 DB_PASS = "featupz97"
 
-db = mysql.connector.connect(
-    host=DB_HOST,
-    user=DB_USER,
-    password=DB_PASS,
-    database=DB_NAME
-)
+# db = mysql.connector.connect(
+#     host=DB_HOST,
+#     user=DB_USER,
+#     password=DB_PASS,
+#     database=DB_NAME
+# )
 
 MAX_SEDES = 100
 departments = []
@@ -27,35 +27,52 @@ parties = []
 
 
 def init():
-    cursor = db.cursor()
-    cursor.execute("SELECT * FROM departments")
-    for row in cursor.fetchall():
-        departments.append({
-            "id": row[0],
-            "name": row[1]
-        })
+    with open('departments.json') as json_file:
+        global departments
+        departments = json.load(json_file)
 
-    cursor.execute("SELECT * FROM municipalities")
-    for row in cursor.fetchall():
-        municipalities.append({
-            "id": row[0],
-            "dpt_id": row[1],
-            "name": row[2]
-        })
+    with open('municipalities.json') as json_file:
+        global municipalities
+        municipalities = json.load(json_file)
 
-    cursor.execute("SELECT * FROM papers")
-    for row in cursor.fetchall():
-        papers.append({
-            "id": row[0],
-            "name": row[1]
-        })
+    with open('papers.json') as json_file:
+        global papers
+        papers = json.load(json_file)
 
-    cursor.execute("SELECT * FROM parties")
-    for row in cursor.fetchall():
-        parties.append({
-            "id": row[0],
-            "name": row[1]
-        })
+    with open('parties.json') as json_file:
+        global parties
+        papers = json.load(json_file)
+
+
+    # cursor = db.cursor()
+    # cursor.execute("SELECT * FROM departments")
+    # for row in cursor.fetchall():
+    #     departments.append({
+    #         "id": row[0],
+    #         "name": row[1]
+    #     })
+    #
+    # cursor.execute("SELECT * FROM municipalities")
+    # for row in cursor.fetchall():
+    #     municipalities.append({
+    #         "id": row[0],
+    #         "dpt_id": row[1],
+    #         "name": row[2]
+    #     })
+    #
+    # cursor.execute("SELECT * FROM papers")
+    # for row in cursor.fetchall():
+    #     papers.append({
+    #         "id": row[0],
+    #         "name": row[1]
+    #     })
+    #
+    # cursor.execute("SELECT * FROM parties")
+    # for row in cursor.fetchall():
+    #     parties.append({
+    #         "id": row[0],
+    #         "name": row[1]
+    #     })
 
 
 def getRandomVote():
@@ -71,14 +88,21 @@ def getRandomVote():
     return vote
 
 
-class MyUser(HttpUser):
-    init()
-    host = API_HOST
-    wait_time = between(0.5, 1.0)
+# class MyUser(HttpUser):
+#     init()
+#     host = API_HOST
+#     wait_time = between(0.5, 1.0)
+#
+#     @task
+#     def my_task(self):
+#         headers = {'Content-Type': 'application/json'}
+#         response = self.client.post('/new_vote', headers=headers, data=json.dumps(getRandomVote()))
+#         if response.status_code != 200:
+#             print(f'Response error: {response.status_code}')
 
-    @task
-    def my_task(self):
-        headers = {'Content-Type': 'application/json'}
-        response = self.client.post('/new_vote', headers=headers, data=json.dumps(getRandomVote()))
-        if response.status_code != 200:
-            print(f'Response error: {response.status_code}')
+# TODO delete
+init()
+print(departments)
+print(municipalities)
+print(papers)
+print(parties)

@@ -1,0 +1,90 @@
+[
+  {
+    "id": 1,
+    "name": "Alta Verapaz"
+  },
+  {
+    "id": 2,
+    "name": "Baja Verapaz"
+  },
+  {
+    "id": 3,
+    "name": "Chimaltenango"
+  },
+  {
+    "id": 4,
+    "name": "Chiquimula"
+  },
+  {
+    "id": 5,
+    "name": "El Progreso"
+  },
+  {
+    "id": 6,
+    "name": "Escuintla"
+  },
+  {
+    "id": 7,
+    "name": "Guatemala"
+  },
+  {
+    "id": 8,
+    "name": "Huehuetenango"
+  },
+  {
+    "id": 9,
+    "name": "Izabal"
+  },
+  {
+    "id": 10,
+    "name": "Jalapa"
+  },
+  {
+    "id": 11,
+    "name": "Jutiapa"
+  },
+  {
+    "id": 12,
+    "name": "Peten"
+  },
+  {
+    "id": 13,
+    "name": "Quetzaltenango"
+  },
+  {
+    "id": 14,
+    "name": "Quiche"
+  },
+  {
+    "id": 15,
+    "name": "Retalhuleu"
+  },
+  {
+    "id": 16,
+    "name": "Sacatepequez"
+  },
+  {
+    "id": 17,
+    "name": "San Marcos"
+  },
+  {
+    "id": 18,
+    "name": "Santa Rosa"
+  },
+  {
+    "id": 19,
+    "name": "Solola"
+  },
+  {
+    "id": 20,
+    "name": "Suchitepequez"
+  },
+  {
+    "id": 21,
+    "name": "Totonicapan"
+  },
+  {
+    "id": 22,
+    "name": "Zacapa"
+  }
+]
