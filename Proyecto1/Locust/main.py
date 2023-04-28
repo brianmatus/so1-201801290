@@ -1,23 +1,16 @@
 import random
+import time
+
 from locust import HttpUser, task, between
 import json
 
-import mysql.connector
-
-
-API_HOST = "http://34.27.184.24:80"
+API_HOST = "http://34.133.148.158:80"
 
 DB_HOST = "127.0.0.1"
 DB_NAME = "so1"
 DB_USER = "so1"
 DB_PASS = "featupz97"
 
-# db = mysql.connector.connect(
-#     host=DB_HOST,
-#     user=DB_USER,
-#     password=DB_PASS,
-#     database=DB_NAME
-# )
 
 MAX_SEDES = 100
 departments = []
@@ -41,38 +34,7 @@ def init():
 
     with open('parties.json') as json_file:
         global parties
-        papers = json.load(json_file)
-
-
-    # cursor = db.cursor()
-    # cursor.execute("SELECT * FROM departments")
-    # for row in cursor.fetchall():
-    #     departments.append({
-    #         "id": row[0],
-    #         "name": row[1]
-    #     })
-    #
-    # cursor.execute("SELECT * FROM municipalities")
-    # for row in cursor.fetchall():
-    #     municipalities.append({
-    #         "id": row[0],
-    #         "dpt_id": row[1],
-    #         "name": row[2]
-    #     })
-    #
-    # cursor.execute("SELECT * FROM papers")
-    # for row in cursor.fetchall():
-    #     papers.append({
-    #         "id": row[0],
-    #         "name": row[1]
-    #     })
-    #
-    # cursor.execute("SELECT * FROM parties")
-    # for row in cursor.fetchall():
-    #     parties.append({
-    #         "id": row[0],
-    #         "name": row[1]
-    #     })
+        parties = json.load(json_file)
 
 
 def getRandomVote():
@@ -88,21 +50,17 @@ def getRandomVote():
     return vote
 
 
-# class MyUser(HttpUser):
-#     init()
-#     host = API_HOST
-#     wait_time = between(0.5, 1.0)
-#
-#     @task
-#     def my_task(self):
-#         headers = {'Content-Type': 'application/json'}
-#         response = self.client.post('/new_vote', headers=headers, data=json.dumps(getRandomVote()))
-#         if response.status_code != 200:
-#             print(f'Response error: {response.status_code}')
+class MyUser(HttpUser):
+    init()
+    host = API_HOST
+    wait_time = between(0.5, 1.0)
 
-# TODO delete
-init()
-print(departments)
-print(municipalities)
-print(papers)
-print(parties)
+    @task
+    def my_task(self):
+        headers = {'Content-Type': 'application/json'}
+        the_vote = getRandomVote()
+        print(the_vote)
+        response = self.client.post('/new_vote', headers=headers, data=json.dumps(the_vote))
+        if response.status_code != 200:
+            print(f'Response error: {response.status_code}')
+        # time.sleep(50)
