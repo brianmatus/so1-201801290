@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Line, Bar, Pie, Doughnut, Polar, Radar } from 'react-chartjs-2';
 import Chart from 'chart.js/auto';
 import axios from 'axios';
+import backendIP from "./backend_ip";
 
 
 function Presidente() {
@@ -30,7 +31,7 @@ function Presidente() {
     })
     const getData = async () => {
         //cambio ruta
-        const response = await axios.get('http://35.225.74.205:5000/get_votes')
+        const response = await axios.get(backendIP + '/get_votes')
         const departamento1 = response.data.topPresident[0].department;
         const val1 = response.data.topPresident[0].count;
         const departamento2 = response.data.topPresident[1].department;

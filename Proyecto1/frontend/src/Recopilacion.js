@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import backendIP from "./backend_ip";
 
 
 function Recopilacion() {
     const [data, setData] = useState([]);
 
     const getData = async () => {
-        const response = await axios.get('http://35.225.74.205:5000/get_votes')
+        const response = await axios.get(backendIP + '/get_votes')
         console.log(response.data.votes);
         setData(response.data.votes);
     }
@@ -22,7 +23,7 @@ function Recopilacion() {
         <>
 
             <div className='card mt-2 mb-2'>
-                <div class="table-responsive">
+                <div className="table-responsive">
                     <table className="table table-sm">
                         <thead>
                             <tr>
@@ -49,7 +50,7 @@ function Recopilacion() {
             </div>
 
             <div className='card'>
-                <div class="table-responsive">
+                <div className="table-responsive">
                     <table className="table table-striped table-sm">
                         <thead>
                             <tr>
@@ -61,8 +62,8 @@ function Recopilacion() {
                             </tr>
                         </thead>
                         <tbody>
-                            {data.map(item => (
-                                <tr key={item.sede}>
+                            {data.map((item,index) => (
+                                <tr key={index}>
                                     <td>{item.sede}</td>
                                     <td>{item.municipio}</td>
                                     <td>{item.departamento}</td>

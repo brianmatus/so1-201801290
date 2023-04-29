@@ -4,13 +4,7 @@ import time
 from locust import HttpUser, task, between
 import json
 
-API_HOST = "http://34.133.148.158:80"
-
-DB_HOST = "127.0.0.1"
-DB_NAME = "so1"
-DB_USER = "so1"
-DB_PASS = "featupz97"
-
+API_HOST = "http://146.148.87.142:80"
 
 MAX_SEDES = 100
 departments = []

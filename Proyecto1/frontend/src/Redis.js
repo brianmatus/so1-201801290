@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Line, Bar, Pie, Doughnut, Polar, Radar } from 'react-chartjs-2';
 import Chart from 'chart.js/auto';
 import axios from 'axios';
+import backendIP from "./backend_ip";
 
 
 function Redis() {
@@ -35,14 +36,14 @@ function Redis() {
     const [dataTop, setDataTop] = useState([]);
 
     const getDataTop = async () => {
-        const response = await axios.get('http://35.225.74.205:5000/get_last_redis')
+        const response = await axios.get(backendIP + '/get_last_redis')
         setDataTop(response.data.top);
     }
 
 
     const getData = async () => {
         //cambio ruta
-        const response = await axios.get('http://35.225.74.205:5000/get_top_redis')
+        const response = await axios.get(backendIP + '/get_top_redis')
         const une = response.data.top[0].id || 0;
         const vamos = response.data.top[1].id || 0;
         const valor = response.data.top[2].id || 0;
@@ -101,7 +102,7 @@ function Redis() {
                 <h2>Ultimos 5 votos almacenados</h2>
             </div>
             <div className='card'>
-                <div class="table-responsive">
+                <div className="table-responsive">
                     <table className="table table-striped table-sm">
                         <thead>
                             <tr>
@@ -113,8 +114,8 @@ function Redis() {
                             </tr>
                         </thead>
                         <tbody>
-                            {dataTop.map(item => (
-                                <tr key={item.sede}>
+                            {dataTop.map((item, index) => (
+                                <tr key={index}>
                                     <td>{item.sede}</td>
                                     <td>{item.municipio}</td>
                                     <td>{item.departamento}</td>
@@ -129,6 +130,6 @@ function Redis() {
 
         </div>
     );
-};
+}
 
 export default Redis;

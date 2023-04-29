@@ -4,6 +4,8 @@ import Chart from 'chart.js/auto';
 import dep from './resources/departamentos.json';
 import mun from './resources/municipios.json';
 import axios from 'axios';
+import backendIP from "./backend_ip";
+
 
 
 function Partido() {
@@ -88,7 +90,7 @@ function Partido() {
         const params = {
             department_name: departamentoName
         }
-        const response = await axios.post('http://35.225.74.205:5000/get_top_department', params)
+        const response = await axios.post(backendIP + '/get_top_department', params)
         const une = response.data.votes.UNE || 0;
         const vamos = response.data.votes.VAMOS || 0;
         const valor = response.data.votes.VALOR || 0;
@@ -127,7 +129,7 @@ function Partido() {
             department_name: departamentoName,
             municipality_name: municipioName
         }
-        const response = await axios.post('http://35.225.74.205:5000/get_top_municipality', params)
+        const response = await axios.post(backendIP + '/get_top_municipality', params)
         const une = response.data.votes.UNE || 0;
         const vamos = response.data.votes.VAMOS || 0;
         const valor = response.data.votes.VALOR || 0;
@@ -182,9 +184,9 @@ function Partido() {
                         aria-label="Default select example"
                         onChange={handleChange}
                     >
-                        {dep.map((departamento) => {
+                        {dep.map((departamento, index) => {
                             return (
-                                <option value={departamento.id + "-" + departamento.name}>
+                                <option key={index} value={departamento.id + "-" + departamento.name}>
                                     {departamento.name}
                                 </option>
                             );
