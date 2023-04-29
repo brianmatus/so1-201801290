@@ -30,7 +30,7 @@ function Presidente() {
     })
     const getData = async () => {
         //cambio ruta
-        const response = await axios.get('http://34.170.128.101:5000/get_votes')
+        const response = await axios.get('http://35.225.74.205:5000/get_votes')
         const departamento1 = response.data.topPresident[0].department;
         const val1 = response.data.topPresident[0].count;
         const departamento2 = response.data.topPresident[1].department;
@@ -63,11 +63,10 @@ function Presidente() {
 
     // Actualizar los valores de la gráfica cada 10 segundos
     useEffect(() => {
-        // const interval = setInterval(() => {
-        //     getData();
-        // }, 3000);
-        // return () => clearInterval(interval);
-        getData();
+        const interval = setInterval(() => {
+            getData();
+        }, 3000);
+        return () => clearInterval(interval);
     }, []);
 
 

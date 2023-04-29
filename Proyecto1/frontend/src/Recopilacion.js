@@ -4,21 +4,18 @@ import axios from 'axios';
 
 function Recopilacion() {
     const [data, setData] = useState([]);
-    const [key, setKey] = useState(1);
-    const [dataChild, setDataChild] = useState([]);
 
     const getData = async () => {
-        const response = await axios.get('http://34.170.128.101:5000/get_votes')
+        const response = await axios.get('http://35.225.74.205:5000/get_votes')
         console.log(response.data.votes);
         setData(response.data.votes);
     }
 
     useEffect(() => {
-        // const interval = setInterval(() => {
-        //     getData();
-        // }, 3000);
-        // return () => clearInterval(interval);
-        getData();
+        const interval = setInterval(() => {
+            getData();
+        }, 3000);
+        return () => clearInterval(interval);
     }, []);
 
     return (

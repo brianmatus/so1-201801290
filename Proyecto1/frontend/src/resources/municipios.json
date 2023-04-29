@@ -1,0 +1,552 @@
+[
+  {
+    "id": 1,
+    "dpt_id": 1,
+    "name": "Coban"
+  },
+  {
+    "id": 2,
+    "dpt_id": 1,
+    "name": "Santa Cruz Verapaz"
+  },
+  {
+    "id": 3,
+    "dpt_id": 1,
+    "name": "San Cristobal Verapaz"
+  },
+  {
+    "id": 4,
+    "dpt_id": 1,
+    "name": "Tactic"
+  },
+  {
+    "id": 5,
+    "dpt_id": 1,
+    "name": "Tamahu"
+  },
+  {
+    "id": 18,
+    "dpt_id": 2,
+    "name": "Salama"
+  },
+  {
+    "id": 19,
+    "dpt_id": 2,
+    "name": "San Miguel Chicaj"
+  },
+  {
+    "id": 20,
+    "dpt_id": 2,
+    "name": "Rabinal"
+  },
+  {
+    "id": 21,
+    "dpt_id": 2,
+    "name": "Cubulco"
+  },
+  {
+    "id": 22,
+    "dpt_id": 2,
+    "name": "Granados"
+  },
+  {
+    "id": 26,
+    "dpt_id": 3,
+    "name": "Chimaltenango"
+  },
+  {
+    "id": 27,
+    "dpt_id": 3,
+    "name": "San Jose Poaquil"
+  },
+  {
+    "id": 28,
+    "dpt_id": 3,
+    "name": "San Martin Jilotepeque"
+  },
+  {
+    "id": 29,
+    "dpt_id": 3,
+    "name": "San Juan Comalapa"
+  },
+  {
+    "id": 30,
+    "dpt_id": 3,
+    "name": "Santa Apolonia"
+  },
+  {
+    "id": 42,
+    "dpt_id": 4,
+    "name": "Chiquimula"
+  },
+  {
+    "id": 43,
+    "dpt_id": 4,
+    "name": "Jocotan"
+  },
+  {
+    "id": 44,
+    "dpt_id": 4,
+    "name": "Esquipulas"
+  },
+  {
+    "id": 45,
+    "dpt_id": 4,
+    "name": "Camotan"
+  },
+  {
+    "id": 46,
+    "dpt_id": 4,
+    "name": "Quezaltepeque"
+  },
+  {
+    "id": 53,
+    "dpt_id": 5,
+    "name": "El Jicaro"
+  },
+  {
+    "id": 54,
+    "dpt_id": 5,
+    "name": "Morazan"
+  },
+  {
+    "id": 55,
+    "dpt_id": 5,
+    "name": "San Agustin Acasaguastlan"
+  },
+  {
+    "id": 56,
+    "dpt_id": 5,
+    "name": "San Antonio La Paz"
+  },
+  {
+    "id": 57,
+    "dpt_id": 5,
+    "name": "San Cristobal Acasaguastlan"
+  },
+  {
+    "id": 61,
+    "dpt_id": 6,
+    "name": "Escuintla"
+  },
+  {
+    "id": 62,
+    "dpt_id": 6,
+    "name": "Santa Lucia Cotzumalguapa"
+  },
+  {
+    "id": 63,
+    "dpt_id": 6,
+    "name": "La Democracia"
+  },
+  {
+    "id": 64,
+    "dpt_id": 6,
+    "name": "Siquinala"
+  },
+  {
+    "id": 65,
+    "dpt_id": 6,
+    "name": "Masagua"
+  },
+  {
+    "id": 74,
+    "dpt_id": 7,
+    "name": "Santa Catarina Pinula"
+  },
+  {
+    "id": 75,
+    "dpt_id": 7,
+    "name": "San Jose Pinula"
+  },
+  {
+    "id": 76,
+    "dpt_id": 7,
+    "name": "Guatemala"
+  },
+  {
+    "id": 77,
+    "dpt_id": 7,
+    "name": "San Jose del Golfo"
+  },
+  {
+    "id": 78,
+    "dpt_id": 7,
+    "name": "Palencia"
+  },
+  {
+    "id": 91,
+    "dpt_id": 8,
+    "name": "Huehuetenango"
+  },
+  {
+    "id": 92,
+    "dpt_id": 8,
+    "name": "Chiantla"
+  },
+  {
+    "id": 93,
+    "dpt_id": 8,
+    "name": "Malacatancito"
+  },
+  {
+    "id": 94,
+    "dpt_id": 8,
+    "name": "Cuilco"
+  },
+  {
+    "id": 95,
+    "dpt_id": 8,
+    "name": "Nenton"
+  },
+  {
+    "id": 122,
+    "dpt_id": 9,
+    "name": "Morales"
+  },
+  {
+    "id": 123,
+    "dpt_id": 9,
+    "name": "Los Amates"
+  },
+  {
+    "id": 124,
+    "dpt_id": 9,
+    "name": "Livingston"
+  },
+  {
+    "id": 125,
+    "dpt_id": 9,
+    "name": "El Estor"
+  },
+  {
+    "id": 126,
+    "dpt_id": 9,
+    "name": "Puerto Barrios"
+  },
+  {
+    "id": 127,
+    "dpt_id": 10,
+    "name": "Jalapa"
+  },
+  {
+    "id": 128,
+    "dpt_id": 10,
+    "name": "San Pedro Pinula"
+  },
+  {
+    "id": 129,
+    "dpt_id": 10,
+    "name": "San Luis Jilotepeque"
+  },
+  {
+    "id": 130,
+    "dpt_id": 10,
+    "name": "San Manuel Chaparron"
+  },
+  {
+    "id": 131,
+    "dpt_id": 10,
+    "name": "San Carlos Alzatate"
+  },
+  {
+    "id": 134,
+    "dpt_id": 11,
+    "name": "Jutiapa"
+  },
+  {
+    "id": 135,
+    "dpt_id": 11,
+    "name": "El Progreso"
+  },
+  {
+    "id": 136,
+    "dpt_id": 11,
+    "name": "Santa Catarina Mita"
+  },
+  {
+    "id": 137,
+    "dpt_id": 11,
+    "name": "Agua Blanca"
+  },
+  {
+    "id": 138,
+    "dpt_id": 11,
+    "name": "Asuncion Mita"
+  },
+  {
+    "id": 150,
+    "dpt_id": 12,
+    "name": "Flores"
+  },
+  {
+    "id": 151,
+    "dpt_id": 12,
+    "name": "San Jose"
+  },
+  {
+    "id": 152,
+    "dpt_id": 12,
+    "name": "San Benito"
+  },
+  {
+    "id": 153,
+    "dpt_id": 12,
+    "name": "San Andres"
+  },
+  {
+    "id": 154,
+    "dpt_id": 12,
+    "name": "La Libertad"
+  },
+  {
+    "id": 162,
+    "dpt_id": 13,
+    "name": "Quetzaltenango"
+  },
+  {
+    "id": 163,
+    "dpt_id": 13,
+    "name": "Salcaja"
+  },
+  {
+    "id": 164,
+    "dpt_id": 13,
+    "name": "San Juan Olintepeque"
+  },
+  {
+    "id": 165,
+    "dpt_id": 13,
+    "name": "San Carlos Sija"
+  },
+  {
+    "id": 166,
+    "dpt_id": 13,
+    "name": "Sibilia"
+  },
+  {
+    "id": 186,
+    "dpt_id": 14,
+    "name": "Santa Cruz del Quiche"
+  },
+  {
+    "id": 187,
+    "dpt_id": 14,
+    "name": "Chiche"
+  },
+  {
+    "id": 188,
+    "dpt_id": 14,
+    "name": "Chinique"
+  },
+  {
+    "id": 189,
+    "dpt_id": 14,
+    "name": "Zacualpa"
+  },
+  {
+    "id": 190,
+    "dpt_id": 14,
+    "name": "Chajul"
+  },
+  {
+    "id": 207,
+    "dpt_id": 15,
+    "name": "Retalhuleu"
+  },
+  {
+    "id": 208,
+    "dpt_id": 15,
+    "name": "San Sebastian"
+  },
+  {
+    "id": 209,
+    "dpt_id": 15,
+    "name": "Santa Cruz Mulua"
+  },
+  {
+    "id": 210,
+    "dpt_id": 15,
+    "name": "San Martin Zapotitlan"
+  },
+  {
+    "id": 211,
+    "dpt_id": 15,
+    "name": "San Felipe"
+  },
+  {
+    "id": 216,
+    "dpt_id": 16,
+    "name": "Antigua Guatemala"
+  },
+  {
+    "id": 217,
+    "dpt_id": 16,
+    "name": "Jocotenango"
+  },
+  {
+    "id": 218,
+    "dpt_id": 16,
+    "name": "Pastores"
+  },
+  {
+    "id": 219,
+    "dpt_id": 16,
+    "name": "Sumpango"
+  },
+  {
+    "id": 220,
+    "dpt_id": 16,
+    "name": "Santo Domingo Xenacoj"
+  },
+  {
+    "id": 232,
+    "dpt_id": 17,
+    "name": "San Marcos"
+  },
+  {
+    "id": 233,
+    "dpt_id": 17,
+    "name": "Ayutla"
+  },
+  {
+    "id": 234,
+    "dpt_id": 17,
+    "name": "Catarina"
+  },
+  {
+    "id": 235,
+    "dpt_id": 17,
+    "name": "Comitancillo"
+  },
+  {
+    "id": 236,
+    "dpt_id": 17,
+    "name": "Concepcion Tutuapa"
+  },
+  {
+    "id": 262,
+    "dpt_id": 18,
+    "name": "Cuilapa"
+  },
+  {
+    "id": 263,
+    "dpt_id": 18,
+    "name": "Casillas Santa Rosa"
+  },
+  {
+    "id": 264,
+    "dpt_id": 18,
+    "name": "Chiquimulilla"
+  },
+  {
+    "id": 265,
+    "dpt_id": 18,
+    "name": "Guazacapan"
+  },
+  {
+    "id": 266,
+    "dpt_id": 18,
+    "name": "Nueva Santa Rosa"
+  },
+  {
+    "id": 276,
+    "dpt_id": 19,
+    "name": "Solola"
+  },
+  {
+    "id": 277,
+    "dpt_id": 19,
+    "name": "Concepcion"
+  },
+  {
+    "id": 278,
+    "dpt_id": 19,
+    "name": "Nahuala"
+  },
+  {
+    "id": 279,
+    "dpt_id": 19,
+    "name": "Panajachel"
+  },
+  {
+    "id": 280,
+    "dpt_id": 19,
+    "name": "San Andres Semetabaj"
+  },
+  {
+    "id": 295,
+    "dpt_id": 20,
+    "name": "Mazatenango"
+  },
+  {
+    "id": 296,
+    "dpt_id": 20,
+    "name": "Cuyotenango"
+  },
+  {
+    "id": 297,
+    "dpt_id": 20,
+    "name": "San Francisco Zapotitlan"
+  },
+  {
+    "id": 298,
+    "dpt_id": 20,
+    "name": "San Bernardino"
+  },
+  {
+    "id": 299,
+    "dpt_id": 20,
+    "name": "San Jose El idolo"
+  },
+  {
+    "id": 315,
+    "dpt_id": 21,
+    "name": "Totonicapan"
+  },
+  {
+    "id": 316,
+    "dpt_id": 21,
+    "name": "San Cristobal Totonicapan"
+  },
+  {
+    "id": 317,
+    "dpt_id": 21,
+    "name": "San Francisco El Alto"
+  },
+  {
+    "id": 318,
+    "dpt_id": 21,
+    "name": "San Andres Xecul"
+  },
+  {
+    "id": 319,
+    "dpt_id": 21,
+    "name": "Momostenango"
+  },
+  {
+    "id": 323,
+    "dpt_id": 22,
+    "name": "Cabañas"
+  },
+  {
+    "id": 324,
+    "dpt_id": 22,
+    "name": "Estanzuela"
+  },
+  {
+    "id": 325,
+    "dpt_id": 22,
+    "name": "Gualan"
+  },
+  {
+    "id": 326,
+    "dpt_id": 22,
+    "name": "Huite"
+  },
+  {
+    "id": 327,
+    "dpt_id": 22,
+    "name": "La Union"
+  }
+]
