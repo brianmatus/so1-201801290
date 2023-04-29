@@ -1,23 +1,16 @@
 import random
+import time
+
 from locust import HttpUser, task, between
 import json
 
-import mysql.connector
-
-
-API_HOST = "http://34.173.108.81:80"
+API_HOST = "http://34.133.148.158:80"
 
 DB_HOST = "127.0.0.1"
 DB_NAME = "so1"
 DB_USER = "so1"
 DB_PASS = "featupz97"
 
-db = mysql.connector.connect(
-    host=DB_HOST,
-    user=DB_USER,
-    password=DB_PASS,
-    database=DB_NAME
-)
 
 MAX_SEDES = 100
 departments = []
@@ -27,35 +20,21 @@ parties = []
 
 
 def init():
-    cursor = db.cursor()
-    cursor.execute("SELECT * FROM departments")
-    for row in cursor.fetchall():
-        departments.append({
-            "id": row[0],
-            "name": row[1]
-        })
+    with open('departments.json') as json_file:
+        global departments
+        departments = json.load(json_file)
 
-    cursor.execute("SELECT * FROM municipalities")
-    for row in cursor.fetchall():
-        municipalities.append({
-            "id": row[0],
-            "dpt_id": row[1],
-            "name": row[2]
-        })
+    with open('municipalities.json') as json_file:
+        global municipalities
+        municipalities = json.load(json_file)
 
-    cursor.execute("SELECT * FROM papers")
-    for row in cursor.fetchall():
-        papers.append({
-            "id": row[0],
-            "name": row[1]
-        })
+    with open('papers.json') as json_file:
+        global papers
+        papers = json.load(json_file)
 
-    cursor.execute("SELECT * FROM parties")
-    for row in cursor.fetchall():
-        parties.append({
-            "id": row[0],
-            "name": row[1]
-        })
+    with open('parties.json') as json_file:
+        global parties
+        parties = json.load(json_file)
 
 
 def getRandomVote():
@@ -79,6 +58,9 @@ class MyUser(HttpUser):
     @task
     def my_task(self):
         headers = {'Content-Type': 'application/json'}
-        response = self.client.post('/new_vote', headers=headers, data=json.dumps(getRandomVote()))
+        the_vote = getRandomVote()
+        print(the_vote)
+        response = self.client.post('/new_vote', headers=headers, data=json.dumps(the_vote))
         if response.status_code != 200:
             print(f'Response error: {response.status_code}')
+        # time.sleep(50)
